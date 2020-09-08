@@ -1,0 +1,21 @@
+﻿<Window x:Class="FreeMemory.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ctrl="clr-namespace:FreeMemory.Control"
+        xmlns:local="clr-namespace:FreeMemory"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent"
+<<<<<<< Updated upstream
+        Title="MainWindow" Height="400" Width="300">
+=======
+        Title="MainWindow" Height="500" Width="300">
+>>>>>>> Stashed changes
+    <Grid>
+        <Button/>
+    </Grid>
+</Window>

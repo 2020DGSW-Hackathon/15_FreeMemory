@@ -1,0 +1,33 @@
+﻿<Window x:Class="FreeMemory.View.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FreeMemory.View"
+<<<<<<< Updated upstream
+        mc:Ignorable="d" WindowStyle="None" ResizeMode="NoResize" Background="Transparent" AllowsTransparency="True"
+=======
+        mc:Ignorable="d"
+>>>>>>> Stashed changes
+        WindowStartupLocation="CenterScreen"
+        Title="LoginWindow" Height="450" Width="800">
+    <Grid>
+        <Rectangle RadiusX="10" RadiusY="10" Fill="White" Width="250" Height="300">
+            <Rectangle.Effect>
+                <DropShadowEffect BlurRadius="30"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <StackPanel Height="180" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="로그인" 
+                   BorderThickness="0" Margin="7" FontWeight="UltraBold" Foreground="DimGray" FontSize="22"/>
+            <TextBox Width="200" Height="30" Margin="3" Background="#E5E5E5" BorderThickness="0" 
+                     Foreground="DarkGray" Text="아이디" VerticalContentAlignment="Center" Padding="7"/>
+            <TextBox Width="200" Height="30" Margin="3" Background="#E5E5E5" BorderThickness="0" 
+                     Foreground="DarkGray" Text="비밀번호" VerticalContentAlignment="Center" Padding="7"/>
+            <DockPanel Margin="5">
+                <Button Background="Transparent" BorderThickness="0" Content="회원가입" Foreground="Gray"/>
+                <Button HorizontalAlignment="Right" Background="Transparent" BorderThickness="0" Content="로그인" Foreground="Gray"/>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</Window>
