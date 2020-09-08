@@ -7,5 +7,6 @@ schedule.post('/', scheduleCtrl.createSchedule);
 schedule.put('/:idx', scheduleCtrl.modifySchedule);
 schedule.delete('/:idx', scheduleCtrl.deleteSchedule);
 schedule.get('/target/:target', scheduleCtrl.getScheduleByTarget);
+schedule.get('/type/:type', scheduleCtrl.getScheduleByType);
 
 module.exports = schedule;

@@ -26,7 +26,12 @@ module.exports = (sequelize, DataTypes) => {
       field: 'target',
       type: DataTypes.INTEGER,
       allowNull: false,
-    }
+    },
+    type: {
+      field: 'type',
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   }, {
     tableName: 'schedule',
     timestamps: false,
@@ -48,6 +53,12 @@ module.exports = (sequelize, DataTypes) => {
   Schedule.getScheduleByTarget = (target) => Schedule.findAll({
     where: {
       target,
+    }
+  })
+
+  Schedule.getScheduleByType = (type) => Schedule.findAll({
+    where: {
+      type,
     }
   })
 
