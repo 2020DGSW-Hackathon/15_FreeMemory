@@ -32,7 +32,7 @@ const RegisterContainer = ({ store, history }) => {
       .then(response => {
         if (response.status === 200) {
           Swal.fire("성공", "회원가입 성공", "success").then(() => {
-            history.push('/');
+            history.push('/signin');
           })
         }
       })
