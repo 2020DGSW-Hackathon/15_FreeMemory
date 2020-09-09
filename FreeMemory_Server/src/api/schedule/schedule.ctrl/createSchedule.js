@@ -2,6 +2,7 @@ const models = require('../../../models');
 
 module.exports = async (req, res) => {
   const { body } = req;
+  console.log(body);
 
   try {
     await models.Schedule.create({
@@ -9,6 +10,7 @@ module.exports = async (req, res) => {
       startDate: body.startDate,
       endDate: body.endDate,
       target: body.target,
+      type: body.type
     });
 
     return res.status(200).json({

@@ -14,12 +14,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     startDate: {
       field: 'date_start',
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
     endDate: {
       field: 'date_end',
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
     target: {
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     type: {
       field: 'type',
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
   }, {
     tableName: 'schedule',
@@ -59,6 +59,12 @@ module.exports = (sequelize, DataTypes) => {
   Schedule.getScheduleByType = (type) => Schedule.findAll({
     where: {
       type,
+    }
+  })
+
+  Schedule.getScheduleByDate = (startDate) => Schedule.findAll({
+    where: {
+      startDate: startDate,
     }
   })
 

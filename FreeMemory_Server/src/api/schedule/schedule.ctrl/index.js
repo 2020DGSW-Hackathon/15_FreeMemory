@@ -4,3 +4,4 @@ exports.deleteSchedule = require('./deleteSchedule');
 exports.modifySchedule = require('./modifySchedule');
 exports.getScheduleByTarget = require('./getScheduleByTarget');
 exports.getScheduleByType = require('./getScheduleByType');
+exports.getScheduleByDate = require('./getScheduleByDate');
