@@ -12,7 +12,7 @@ namespace FreeMemory
 {
     public class Network
     {
-        private static RestRequest AddToRequest(RestRequest restRequest, string json = null)
+        private static RestRequest AddToRequest(RestRequest restRequest, string json = null, UrlSegment[] urlSegments = null, Header[] headers = null)
         {
             if (urlSegments != null)
             {
@@ -36,23 +36,19 @@ namespace FreeMemory
                 restRequest.AddParameter("application/json", json, ParameterType.RequestBody);
             }
 
-            if (token != null)
-            {
-                restRequest.AddHeader("x-access-token", token.Token);
-            }
             return restRequest;
         }
 
         private static RestClient CreateClient(string resource)
         {
-            var restClient = new RestClient(resource) { Timeout = Options.timeOut };
+            var restClient = new RestClient(resource) { Timeout = 30000 };
             return restClient;
         }
 
-        private static RestRequest CreateRequest(string resource, Method method, string parameterJson, TokenInfo token = null, UrlSegment[] urlSegments = null, Header[] headers = null)
+        private static RestRequest CreateRequest(string resource, Method method, string parameterJson, UrlSegment[] urlSegments = null, Header[] headers = null)
         {
-            var restRequest = new RestRequest(resource, method) { Timeout = Options.timeOut };
-            restRequest = AddToRequest(restRequest, token, parameterJson, urlSegments, headers);
+            var restRequest = new RestRequest(resource, method) { Timeout = 30000 };
+            restRequest = AddToRequest(restRequest, parameterJson, urlSegments, headers);
 
             return restRequest;
         }
@@ -63,7 +59,6 @@ namespace FreeMemory
             {
                 NamingStrategy = new SnakeCaseNamingStrategy()
             };
-
 
             try
             {
@@ -82,15 +77,58 @@ namespace FreeMemory
             return default(T);
         }
 
-        public async Task<T> GetResponse<T>(string resource, Method method, string parameterJson = null, UrlSegment[] urlSegments = null, Header[] headers = null)
+        public async Task<Response<T>> GetResponse<T>(string resource, Method method, string parameterJson = null, UrlSegment[] urlSegments = null, Header[] headers = null)
         {
             var client = CreateClient(resource);
-            var restRequest = CreateRequest(resource, method, parameterJson, Options.tokenInfo, urlSegments, headers);
-            var response = await client.ExecuteTaskAsync(restRequest);
+            var restRequest = CreateRequest(resource, method, parameterJson, urlSegments, headers);
+            var response = await client.ExecuteAsync(restRequest);
 
-            var resp = DeserializeSnakeCase<T>(response.Content);
+            var resp = DeserializeSnakeCase<Response<T>>(response.Content);
 
             return resp;
         }
+    }
+    public class UrlSegment
+    {
+        public string Name { get; set; }
+        public object Value { get; set; }
+
+        public UrlSegment(string name, object value)
+        {
+            Name = name;
+            Value = value;
+        }
+    }
+
+    public class Header
+    {
+        public string Name { get; set; }
+        public string Value { get; set; }
+
+        public Header(string name, string value)
+        {
+            Name = name;
+            Value = value;
+        }
+    }
+
+    public class Response<T>
+    {
+        [JsonProperty("status")]
+        public int Status { get; set; }
+        [JsonProperty("message")]
+        public string Message { get; set; }
+        [JsonProperty("data")]
+        public T Data { get; set; }
+
+        public static implicit operator Response<T>(Response<string> v)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public sealed class Nothing
+    {
+        public static Nothing AtAll => null;
     }
 }

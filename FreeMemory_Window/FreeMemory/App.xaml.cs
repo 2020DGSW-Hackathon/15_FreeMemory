@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FreeMemory.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,6 +14,9 @@ namespace FreeMemory
     /// </summary>
     public partial class App : Application
     {
+        
         public static string ServerUrl = "http://10.80.161.127:8080";
+        public static Network network = new Network();
+        public static ScheduleViewModel ScheduleViewModel = new ScheduleViewModel();
     }
 }
